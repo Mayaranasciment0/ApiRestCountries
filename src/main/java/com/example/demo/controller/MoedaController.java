@@ -1,8 +1,8 @@
-package main.java.com.example.demo.controller;
+package com.example.demo.controller;
 
-import main.java.com.exemple.demo.exception.MoedaNotFoundException;
-import main.java.com.example.demo.model.Moeda;
-import main.java.com.example.demo.service.MoedaService;
+import com.example.demo.exception.MoedaNotFoundException;
+import com.example.demo.model.Moeda;
+import com.example.demo.service.MoedaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

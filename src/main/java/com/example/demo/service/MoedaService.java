@@ -1,7 +1,7 @@
-package main.java.com.example.demo.service;
+package com.example.demo.service;
 
-import main.java.com.example.demo.model.Moeda;
-import main.java.com.example.demo.repository.MoedaRepository;
+import com.example.demo.model.Moeda;
+import com.example.demo.repository.MoedaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
