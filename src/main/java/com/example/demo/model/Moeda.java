@@ -2,9 +2,10 @@ package com.example.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-//import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,7 +38,6 @@ public class Moeda {
         this.pais = pais;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -53,7 +53,7 @@ public class Moeda {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public String getSimbolo() {
         return simbolo;
     }
@@ -77,7 +77,7 @@ public class Moeda {
     public void setPais(Pais pais) {
         this.pais = pais;
     }
-    
+
     @Override
     public String toString() {
         return "Moeda{" +

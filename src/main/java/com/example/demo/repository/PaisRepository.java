@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.demo.model.Moeda;
+import com.example.demo.model.Pais;
 
 @Repository
-public interface MoedaRepository extends JpaRepository<Moeda, Long> {
+public interface PaisRepository extends JpaRepository<Pais, Long> {
 
-    Optional<Moeda> findByCodigo(String codigo);
+    Optional<Pais> findByName(String nome);
 }
