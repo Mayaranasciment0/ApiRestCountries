@@ -20,30 +20,23 @@ public class PaisService {
     @Autowired
     private MoedaRepository moedaRepository;
 
-    
     @Autowired
     private RestTemplate restTemplate;
 
-    //URL da API
     private static final String REST_COUNTRIES_API_URL = "https://restcountries.com/v3.1/all";
 
-
-    // salvar país
     public Pais savePais(Pais pais) {
         return paisRepository.save(pais);
     }
 
-    // pegar país por ID
     public Optional<Pais> getPaisById(Long id) {
         return paisRepository.findById(id);
     }
 
-    // pegar por nome
     public Optional<Pais> getPaisByName(String nome) {
-        return paisRepository.findByName(nome);
+        return paisRepository.findByNome(nome);
     }
 
-    // atualizar o país
     public Pais updatePais(Long id, Pais paisAtualizado) {
         return paisRepository.findById(id)
                 .map(pais -> {
@@ -55,18 +48,15 @@ public class PaisService {
                 .orElseThrow(() -> new PaisNotFoundException(id));
     }
 
-    // deletar
     public void deletePais(Long id) {
         if (paisRepository.existsById(id)) {
             paisRepository.deleteById(id);
         } else {
-            throw new RuntimeException("País não encontrada com o ID: " + id);
+            throw new PaisNotFoundException(id);
         }
     }
 
-    // listar os países
     public List<Pais> getAllPais() {
         return paisRepository.findAll();
     }
-
 }

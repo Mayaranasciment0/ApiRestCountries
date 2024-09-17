@@ -18,30 +18,20 @@ public class PaisController {
     private PaisService paisService;
 
     @GetMapping
-    public List<Pais> gettAllPais() {
-        return paisService.findAll();
+    public List<Pais> getAllPaises() {
+        return paisService.getAllPais();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pais> getPaiById(@pathVariable Long id) {
-        Pais pais = paisService.findById(id);
-        if (pais == null) {
-            throw new PaisNotFoundException("País não encontrado.");
-        }
-        return ResponseEntity.ok(pais);
+    public ResponseEntity<Pais> getPaisById(@PathVariable Long id) {
+        Optional<Pais> pais = paisService.getPaisById(id);
+        return pais.map(ResponseEntity::ok)
+                   .orElseThrow(() -> new PaisNotFoundException(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Pais> updatePais(@PathVariable Long id, @RequestBody Pais paisDetails) {
-        Pais pais = paisService.findById(id);
-        if (pais == null) {
-            throw new PaisNotFoundException("País não encontrado.");
-        }
-        pais.setNome(paisDetails.getNome());
-        pais.setCapital(paisDetails.getCapital());
-        pais.setRegiao(paisDetails.getRegiao());
-        pais.setMoeda(paisDetails.getMoeda());
-        Pais updatePais = paisService.savePais(pais);
-        return ResponseEntity.ok(updatePais);
+        Pais paisAtualizado = paisService.updatePais(id, paisDetails);
+        return ResponseEntity.ok(paisAtualizado);
     }
 }

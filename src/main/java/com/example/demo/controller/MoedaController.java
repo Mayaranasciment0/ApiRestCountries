@@ -26,7 +26,8 @@ public class MoedaController {
     @GetMapping("/{id}")
     public ResponseEntity<Moeda> getMoedaById(@PathVariable Long id) {
         Optional<Moeda> moeda = moedaService.getMoedaById(id);
-        return ResponseEntity.ok(moeda.get());
+        return moeda.map(ResponseEntity::ok)
+                    .orElseThrow(() -> new MoedaNotFoundException(id));
     }
 
     @PostMapping
